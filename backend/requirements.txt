@@ -1,0 +1,26 @@
+# ---- Web API ----
+fastapi>=0.111.0
+uvicorn[standard]>=0.30.0
+python-multipart>=0.0.9
+
+# ---- Agent pipeline ----
+langchain>=0.2.11
+langchain-core>=0.2.28
+langchain-mistralai>=0.1.11
+mistralai>=0.4.2
+
+# ---- PDF extraction / generation ----
+pdfplumber>=0.11.0
+pymupdf>=1.24.0
+reportlab>=4.2.0
+
+# ---- Validation, config, logging ----
+pydantic>=2.7.0
+python-dotenv>=1.0.1
+rich>=13.7.0
+
+# OCR is optional and OFF by default (ENABLE_OCR=false). It needs the system
+# Tesseract binary, which isn't available on Vercel serverless. Only add these
+# (and the binary) on a host where you actually need scanned-PDF support:
+# pytesseract>=0.3.10
+# pillow>=10.3.0
