@@ -1,5 +1,4 @@
 # Render Blueprint — deploys the FastAPI backend as an always-on web service.
-# In the Render dashboard: New -> Blueprint -> point at this repo (root = backend/).
 services:
   - type: web
     name: po-sales-order-api
@@ -11,18 +10,14 @@ services:
     healthCheckPath: /
     envVars:
       - key: LLM_PROVIDER
-        value: mock            # set to "mistral" and add MISTRAL_API_KEY for live extraction
+        value: mock
       - key: MISTRAL_API_KEY
-        sync: false            # add your key in the dashboard; never commit it
+        sync: false
       - key: MISTRAL_MODEL
         value: mistral-large-latest
       - key: ENABLE_OCR
         value: "false"
       - key: DB_PATH
-        value: /var/data/sales.db
+        value: /tmp/sales.db
       - key: FRONTEND_ORIGIN
-        sync: false            # set to your Vercel URL, e.g. https://your-app.vercel.app
-    disk:
-      name: sales-data
-      mountPath: /var/data     # persistent disk so Sales Orders survive restarts
-      sizeGB: 1
+        sync: false
