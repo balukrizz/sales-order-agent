@@ -138,13 +138,6 @@ export default function ProcessPage() {
             </div>
           </div>
 
-          <div className="text-xs text-slate-500 mt-5">
-            LLM provider:{" "}
-            <b className="text-ink">{cfg ? cfg.provider.toUpperCase() : "…"}</b>
-            {cfg && cfg.provider === "mock" && " (offline)"} · OCR:{" "}
-            <b className="text-ink">{cfg ? (cfg.ocr ? "on" : "off") : "…"}</b>
-          </div>
-
           <div className="flex gap-3 mt-5">
             <button
               onClick={run}
