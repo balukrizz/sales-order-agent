@@ -6,7 +6,6 @@ import AgentTimeline from "@/components/AgentTimeline";
 import {
   API,
   fetchSample,
-  getConfig,
   pdfUrl,
   resetDemo,
   streamProcess,
@@ -22,7 +21,6 @@ const SAMPLES = [
 ];
 
 export default function ProcessPage() {
-  const [cfg, setCfg] = useState<{ provider: string; ocr: boolean } | null>(null);
   const [file, setFile] = useState<File | null>(null);
   const [fileName, setFileName] = useState("");
   const [running, setRunning] = useState(false);
@@ -31,10 +29,6 @@ export default function ProcessPage() {
   const [result, setResult] = useState<PipelineResult | null>(null);
   const [err, setErr] = useState("");
   const logRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    getConfig().then((c) => setCfg({ provider: c.provider, ocr: c.ocr })).catch(() => setCfg(null));
-  }, []);
 
   useEffect(() => {
     logRef.current?.scrollTo(0, logRef.current.scrollHeight);
@@ -106,7 +100,7 @@ export default function ProcessPage() {
 
   return (
     <div>
-      <Header cfg={cfg} />
+      <Header />
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-6 mt-6">
         {/* left: input */}
@@ -138,7 +132,7 @@ export default function ProcessPage() {
             </div>
           </div>
 
-          <div className="flex gap-3 mt-5">
+          <div className="flex gap-3 mt-6">
             <button
               onClick={run}
               disabled={!file || running}
@@ -208,7 +202,7 @@ export default function ProcessPage() {
   );
 }
 
-function Header({ cfg }: { cfg: { provider: string; ocr: boolean } | null }) {
+function Header() {
   return (
     <div>
       <div className="text-xs uppercase tracking-widest text-teal-dark font-semibold">

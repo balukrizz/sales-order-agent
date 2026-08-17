@@ -43,9 +43,6 @@ export default function Sidebar() {
           );
         })}
       </nav>
-      <div className="mt-auto text-[11px] text-slate-400 px-2 leading-relaxed">
-        PO → Sales Order automation.<br />
-      </div>
     </aside>
   );
 }
